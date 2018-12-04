@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="5dp"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <org.opencv.android.JavaCameraView
+        android:id="@+id/camera"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:camera_id="front"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/ll_eyes"
+        app:layout_constraintVertical_weight="60"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="-"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/tv_isdetected_lefteye"
+        android:text="LEFT EYE"
+        android:textColor="#999999"/>
+
+    <TextView
+        android:id="@+id/tv_isdetected_lefteye"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/ll_eyes"
+        android:text="INITIALIZING"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/tv_isdetected_righteye"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="RIGHT EYE"
+        android:textColor="#999999"/>
+
+    <TextView
+        android:id="@+id/tv_isdetected_righteye"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/ll_eyes"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="INITIALIZING"/>
+
+    <CheckBox
+        android:id="@+id/cb_grayscale"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Grayscale"
+        android:textColor="#0e2f44"
+        android:buttonTint="#0e2f44"/>
+
+    <LinearLayout
+        android:id="@+id/ll_eyes"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/camera"
+        app:layout_constraintBottom_toTopOf="@+id/cl_control"
+        app:layout_constraintVertical_weight="20">
+
+        <ImageView
+            android:id="@+id/iv_eyeLeft"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/iv_eyeRight"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cl_control"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/ll_eyes"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_weight="30">
+
+        <!--
+        brightness
+        contrast
+        sharpness
+        gamma
+        -->
+
+        <LinearLayout
+            android:id="@+id/ll_brightness"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/ll_contrast"
+            app:layout_constraintVertical_weight="25">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center_vertical"
+                android:text="Brightness"/>
+
+            <SeekBar
+                android:id="@+id/sb_brightness"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="6" />
+
+            <Button
+                android:id="@+id/b_brightness_minus"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="-"/>
+
+            <TextView
+                android:id="@+id/tv_brightness_value"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"/>
+
+            <Button
+                android:id="@+id/b_brightness_plus"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="+"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_contrast"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/ll_brightness"
+            app:layout_constraintBottom_toBottomOf="@+id/ll_sharpness"
+            app:layout_constraintVertical_weight="25">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center_vertical"
+                android:text="Contrast"/>
+
+            <SeekBar
+                android:id="@+id/sb_contrast"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="6"/>
+
+            <Button
+                android:id="@+id/b_contrast_minus"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="-"/>
+
+            <TextView
+                android:id="@+id/tv_contrast_value"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"/>
+
+            <Button
+                android:id="@+id/b_contrast_plus"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="+"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_sharpness"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/ll_contrast"
+            app:layout_constraintBottom_toBottomOf="@+id/ll_gamma"
+            app:layout_constraintVertical_weight="25">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center_vertical"
+                android:text="Sharpness"/>
+
+            <SeekBar
+                android:id="@+id/sb_sharpness"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="6"/>
+
+            <Button
+                android:id="@+id/b_sharpness_minus"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="-"/>
+
+            <TextView
+                android:id="@+id/tv_sharpness_value"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"/>
+
+            <Button
+                android:id="@+id/b_sharpness_plus"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="+"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_gamma"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/ll_sharpness"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_weight="25">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center_vertical"
+                android:text="Gamma"/>
+
+            <SeekBar
+                android:id="@+id/sb_gamma"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="6"/>
+
+            <Button
+                android:id="@+id/b_gamma_minus"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="-"/>
+
+            <TextView
+                android:id="@+id/tv_gamma_value"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"/>
+
+            <Button
+                android:id="@+id/b_gamma_plus"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="+"/>
+
+        </LinearLayout>
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>
